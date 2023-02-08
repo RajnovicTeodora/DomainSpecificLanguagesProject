@@ -1,0 +1,71 @@
+advertisement MassageAdvertisement {
+
+    title : "Massage Advertisement"
+    description: "Here you can advertise your massage services!"
+
+    submit_url:"https://myPage/forms"
+
+    success_message: "You have successfully submitted your advertisement."
+    error_message: "Unable to submit new advertisement."
+
+    item_section {
+        sub_section beauty_salon_info {
+
+          @Required
+          @Input
+          field salon_name {
+            name : "Name" 
+            type : "text"
+          }
+
+          @Required
+          @Input
+          field salon_email {
+            name : "Email" 
+            type : "email"
+          }
+
+          @Required
+          @Input
+          field salon_telephone {
+            name : "Telephone number" 
+            type : "text"
+          }
+
+          @Input
+          field start_work_hours {
+            name: "Start work hours"
+            type: "date"
+          }
+
+          
+          @Input
+          field end_work_hours {
+            name: "End work hours"
+            type: "date"
+          }
+
+        }
+        
+        sub_section salon_services {
+          
+          @Required
+          @ListItem
+          field services {
+            name: "Massage services"
+            item_properties: ['name', 'description', 'price']         
+          }
+          // Imagined as a list of <div> tags which contain the item_properties
+          // We can add new <div> tags to the list. 
+          // Example: https://www.sredime.rs price list for treatments
+
+
+          @Checkbox
+          field on_site {
+            name: "House calls available?"   
+          }
+
+        }
+      }
+    }
+}

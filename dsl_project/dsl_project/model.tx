@@ -1,0 +1,69 @@
+AdvertisementPage:    
+
+    //advertisement
+    advertisements=AdvertisementTab
+;
+
+AdvertisementTab:
+
+    'advertisement' name=ID '{'
+        'title' ':' title=STRING
+        ('description' ':' description=STRING)?
+        //advertisement information
+        advertisement_info=AdvertisementInformation
+
+        //sections with items
+        category_item_sections+=ItemCard
+    '}'
+;
+
+
+AdvertisementInformation:
+    'submit_url' ':' submit_url=STRING
+;
+
+ItemCard:
+   'item_section {'
+      sub_sections+=SubSection
+   '}'
+;
+
+SubSection:
+  'sub_section' name=ID '{'
+    template_fields+=TemplateField
+  '}'
+;
+
+// Generates an input field in the template
+TemplateField: 
+  required_field?='@Required'
+  '@'field_type=[FieldType]
+  'field' name=ID '{'
+      'name' ':' name=STRING
+      fields*=FieldValue
+  '}'
+;
+
+FieldType:
+    "Input"|"Checkbox"|"Select"|"ListItem"
+;
+
+FieldValue:
+    field_name=STRING ':' value=Value
+;
+
+Value:
+    PrimitiveValue | ArrayValue
+;
+
+// String : input type text, Float : input type number, step = 0.1, Int : input type number, Bool: checkbox
+PrimitiveValue:
+    value=STRING | value=STRICTFLOAT | value=INT | value=BOOL
+;
+
+ArrayValue:
+    '[' value+=STRING[','] ']' | '[' value+=STRICTFLOAT[','] ']' | '[' value+=INT[','] ']' | '[' value+=BOOL[','] ']' 
+;
+
+
+
