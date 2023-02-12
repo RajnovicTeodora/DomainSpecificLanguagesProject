@@ -1,0 +1,154 @@
+{% if field.parameters['multiline'] %}
+
+    <textarea
+        {% if field.required %}
+            required
+        {% endif %}
+        name="{{field.name}}"
+        {% if field.parameters['minlength'] != null %}
+            minlength="{{field.parameters['minlength']}}"
+        {%  endif %}
+        {% if field.parameters['maxlength'] != null%}
+            maxlength="{{field.parameters['maxlength']}}"
+        {%  endif %}
+        class="form-field form-control"
+        {% if field.parameters['placeholder'] %}
+            placeholder="{{field.parameters['placeholder']}}"
+        {% else %}
+            placeholder="{{field.name}}"
+        {% endif %}>
+    </textarea>
+
+{% endif %}
+
+{% if field.parameters['email'] %}
+
+    <input
+        {% if field.required %}
+            required
+        {% endif %}
+        {% if field.parameters['pattern'] %}
+            pattern="{{field.parameters['pattern']}}"
+        {% else %}
+            pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        {% endif %}>
+
+        type="email"
+        {% if field.parameters['minlength'] != null %}
+            minlength="{{field.parameters['minlength']}}"
+        {%  endif %}
+        {% if field.parameters['maxlength'] != null%}
+            maxlength="{{field.parameters['maxlength']}}"
+        {%  endif %}
+        name="{{field.name}}"
+        class="form-field"
+        {% if field.parameters['placeholder'] %}
+            placeholder="{{field.parameters['placeholder']}}"
+        {% else %}
+            placeholder="{{field.name}}"
+        {% endif %}>
+
+{% endif %}
+
+{% if field.parameters['number'] %}
+
+    <input
+        {% if field.required %}
+            required
+        {% endif %}
+        type="number"
+        {% if field.parameters['min'] != null %}
+            min="{{field.parameters['min]}}"
+        {%  endif %}
+        {% if field.parameters['max'] != null%}
+            max="{{field.parameters['max']}}"
+        {%  endif %}
+        name="{{field.name}}"
+        class="form-field"
+        {% if field.parameters['placeholder'] %}
+            placeholder="{{field.parameters['placeholder']}}"
+        {% else %}
+            placeholder="{{field.name}}"
+        {% endif %}>
+
+{% endif %}
+
+{% if field.parameters['password'] %}
+
+    <input
+        required
+        type="password"
+        {% if field.parameters['minlength'] != null %}
+            minlength="{{field.parameters['minlength']}}"
+        {%  endif %}
+        {% if field.parameters['maxlength'] != null%}
+            maxlength="{{field.parameters['maxlength']}}"
+        {%  endif %}
+        name="{{field.name}}"
+        class="form-field">
+
+{% endif %}
+
+{% if field.parameters['tel'] %}
+
+    <input
+        {% if field.required %}
+            required
+        {% endif %}
+        type="tel"
+         pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+        name="{{field.name}}"
+        class="form-field">
+
+{% endif %}
+
+{% if field.parameters['url'] %}
+    <input
+        {% if field.required %}
+            required
+        {% endif %}
+        type="url"
+        name="{{field.name}}"
+        class="form-field">
+{% endif %}
+
+{% if field.parameters['text'] %}
+    <input
+        {% if field.required %}
+            required
+        {% endif %}
+        type="text"
+         {% if field.parameters['pattern'] %}
+            pattern="{{field.parameters['pattern']}}"
+        {% endif %}
+        {% if field.parameters['minlength'] != null %}
+            minlength="{{field.parameters['minlength']}}"
+        {%  endif %}
+        {% if field.parameters['maxlength'] != null%}
+            maxlength="{{field.parameters['maxlength']}}"
+        {%  endif %}
+        name="{{field.name}}"
+        class="form-field"
+        {% if field.parameters['placeholder'] %}
+            placeholder="{{field.parameters['placeholder']}}"
+        {% else %}
+            placeholder="{{field.name}}"
+        {% endif %}>
+{% endif %}
+
+{% if field.parameters['range'] %}
+    <input
+        {% if field.required %}
+            required
+        {% endif %}
+        type="range"
+        {% if field.parameters['min'] != null %}
+            min="{{field.parameters['min']}}"
+        {%  endif %}
+        {% if field.parameters['max'] != null%}
+            max="{{field.parameters['max']}}"
+        {%  endif %}
+        name="{{field.name}}"
+        class="form-field">
+
+{% endif %}

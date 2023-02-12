@@ -1,0 +1,151 @@
+{% if field['parameters'][0].name=='multiline' %}
+
+    <textarea
+        {% if field['parameters'][4].name=='required' %}
+            required
+        {% endif %}
+        name="{{field.name}}"
+        {% if field['parameters'][2].name == 'min_length' %}
+            minlength="{{field['parameters'][2].value}}"
+        {%  endif %}
+        {% if field['parameters'][1].name == 'max_length'%}
+            maxlength="{{field['parameters'][1].value}}"
+        {%  endif %}
+        class="form-field form-control"
+        {% if field['parameters'][3].name == 'placeholder' %}
+            placeholder="{{field['parameters'][3].value}}"
+        {% else %}
+            placeholder="{{field.name}}"
+        {% endif %}>
+    </textarea>
+{% endif %}
+
+{% if field['parameters'][0].name=='email' %}
+    <input
+        {% if field['parameters'][4].name=='required' %}
+            required
+        {% endif %}
+        {% if field['parameters'][5].name=='pattern' %}
+            pattern="{{field['parameters'][5].value}}"
+        {% else %}
+            pattern = "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        {% endif %}
+
+        type="email"
+        {% if field['parameters'][2].name == 'min_length' %}
+            minlength="{{field['parameters'][2].value}}"
+        {%  endif %}
+        {% if field['parameters'][1].name == 'max_length'%}
+            maxlength="{{field['parameters'][1].value}}"
+        {%  endif %}
+        name="{{field.name}}"
+        class="form-field"
+         {% if field['parameters'][3].name == 'placeholder' %}
+            placeholder="{{field['parameters'][3].value}}"
+        {% else %}
+            placeholder="email"
+        {% endif %}>
+
+{% endif %}
+
+{% if field['parameters'][0].name=='number' %}
+
+    <input
+         {% if field['parameters'][4].name=='required' %}
+            required
+        {% endif %}
+        name="{{field.name}}"
+        {% if field['parameters'][2].name == 'min' %}
+            min="{{field['parameters'][2].value}}"
+        {%  endif %}
+        {% if field['parameters'][1].name == 'max'%}
+            max="{{field['parameters'][1].value}}"
+        {%  endif %}
+        name="{{field.name}}"
+        class="form-field"
+        {% if field['parameters'][3].name == 'placeholder' %}
+            placeholder="{{field['parameters'][3].value}}"
+        {% else %}
+            placeholder="{{field.name}}"
+        {% endif %}>
+
+{% endif %}
+
+{% if field['parameters'][0].name=='password' %}
+
+    <input
+        required
+        type="password"
+        {% if field['parameters'][2].name == 'min_length' %}
+            minlength="{{field['parameters'][2].value}}"
+        {%  endif %}
+        {% if field['parameters'][1].name == 'max_length'%}
+            maxlength="{{field['parameters'][1].value}}"
+        {%  endif %}
+        name="{{field.name}}"
+        class="form-field">
+
+{% endif %}
+
+{% if field['parameters'][0].name=='tel' %}
+    <input
+        {% if field['parameters'][1].name=='required' %}
+            required
+        {% endif %}
+        type="tel"
+        pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+        name="{{field.name}}"
+        class="form-field">
+
+{% endif %}
+
+{% if field['parameters'][0].name=='url' %}
+    <input
+        {% if field['parameters'][1].name=='required' %}
+            required
+        {% endif %}
+        type="url"
+        name="{{field.name}}"
+        class="form-field">
+{% endif %}
+
+{% if field['parameters'][0].name=='text' %}
+    <input
+       {% if field['parameters'][4].name=='required' %}
+            required
+        {% endif %}
+        type="text"
+         {% if field['parameters'][5].name=='pattern' %}
+             pattern="{{field['parameters'][5].value}}"
+        {% endif %}
+        {% if field['parameters'][2].name == 'min_length' %}
+            minlength="{{field['parameters'][2].value}}"
+        {%  endif %}
+        {% if field['parameters'][1].name == 'max_length'%}
+            maxlength="{{field['parameters'][1].value}}"
+        {%  endif %}
+        name="{{field.name}}"
+        class="form-field"
+        {% if field['parameters'][3].name == 'placeholder' %}
+            placeholder="{{field['parameters'][3].value}}"
+        {% else %}
+            placeholder="{{field.name}}"
+        {% endif %}>
+{% endif %}
+
+{% if field['parameters'][0].name== 'range' %}
+    <input
+        {% if field['parameters'][3].name=='required' %}
+            required
+        {% endif %}
+        type="range"
+        {% if field['parameters'][2].name == 'min' %}
+            min="{{field['parameters'][2].value}}"
+        {%  endif %}
+        {% if field['parameters'][1].name == 'max'%}
+            max="{{field['parameters'][1].value}}"
+        {%  endif %}
+        name="{{field.name}}"
+        class="form-field">
+
+{% endif %}
