@@ -20,6 +20,9 @@ AdvertisementTab:
 
 AdvertisementInformation:
     'submit_url' ':' submit_url=STRING
+    ('success_message' ':' success_message=STRING)?
+    ('redirect_url' ':' redirect_url=STRING)?
+    ('error_message' ':' error_message=STRING)?
 ;
 
 ItemCard:
