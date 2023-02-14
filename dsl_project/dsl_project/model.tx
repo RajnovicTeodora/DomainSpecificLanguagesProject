@@ -1,4 +1,6 @@
-AdvertisementPage:    
+import fields
+
+AdvertisementPage:
 
     //advertisement
     advertisements=AdvertisementTab
@@ -37,16 +39,12 @@ SubSection:
 // Generates an input field in the template
 TemplateField: 
   required_field?='@Required'
-  '@'field_type=[FieldType]
-  'field' name=ID '{'
+  'field' field=ID '{'
       'name' ':' name=STRING
       fields*=FieldValue
   '}'
 ;
 
-FieldType:
-    "Input"|"Checkbox"|"Select"|"ListItem"
-;
 
 FieldValue:
     field_name=STRING ':' value=Value
@@ -62,7 +60,7 @@ PrimitiveValue:
 ;
 
 ArrayValue:
-    '[' value+=STRING[','] ']' | '[' value+=STRICTFLOAT[','] ']' | '[' value+=INT[','] ']' | '[' value+=BOOL[','] ']' 
+    '[' value+=STRING[','] ']' | '[' value+=STRICTFLOAT[','] ']' | '[' value+=INT[','] ']' | '[' value+=BOOL[','] ']'
 ;
 
 
