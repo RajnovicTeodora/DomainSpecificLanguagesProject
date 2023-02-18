@@ -44,10 +44,10 @@ TemplateField:
   required_field?='@Required'
   'field' field=ID '{'
       'name' ':' name=STRING
+      'fieldType' ':' field_type= FieldType
       fields*=FieldValue
   '}'
 ;
-
 
 FieldValue:
     field_name=STRING ':' value=Value
