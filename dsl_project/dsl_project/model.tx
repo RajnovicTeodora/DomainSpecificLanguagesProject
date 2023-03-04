@@ -1,10 +1,14 @@
 import template
 
 AdvertisementPage:
+    //user defined templates
+    imports*=Import
 
     //advertisement
     advertisements=AdvertisementTab
 ;
+
+Import: 'import' importURI=STRING;
 
 AdvertisementTab:
 
