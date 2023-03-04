@@ -1,0 +1,7 @@
+Template:
+    templates *= Template
+;
+
+Template: 'template' name=ID '(' params+=Param* ')' file=STRING;
+
+Param: name=ID ':' type=ID;
