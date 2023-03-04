@@ -1,3 +1,5 @@
+import template myTemplate(param1: string, param2: integer) "template-file.html"
+
 advertisement MassageAdvertisement {
 
     title : "Massage Advertisement"
@@ -9,63 +11,35 @@ advertisement MassageAdvertisement {
     error_message: "Unable to submit new advertisement."
 
     item_section {
-        sub_section beauty_salon_info {
 
-          @Required
-          @Input
-          field salon_name {
-            name : "Name" 
-            type : "text"
+      sub_section add1 {
+    
+          field firstName {
+              type: text
+              label: "First Name"
           }
-
-          @Required
-          @Input
-          field salon_email {
-            name : "Email" 
-            type : "email"
+          field lastName {
+              type: text
+              label: "Last Name"
           }
-
-          @Required
-          @Input
-          field salon_telephone {
-            name : "Telephone number" 
-            type : "text"
+          field age {
+              type: select
+              label: "Age"
+              options [
+                  option (label: "18-25", value: "18-25"),
+                  option (label: "26-35", value: "26-35"),
+                  option (label: "36-45", value: "36-45")
+              ]
           }
-
-          @Input
-          field start_work_hours {
-            name: "Start work hours"
-            type: "date"
+          field contactInfo {
+              type: template1
+              label: "Contact Info"
+              values [
+                  param1: "123 Main St",
+                  param2: 5551234
+              ]
           }
-
-          
-          @Input
-          field end_work_hours {
-            name: "End work hours"
-            type: "date"
-          }
-
-        }
-        
-        sub_section salon_services {
-          
-          @Required
-          @ListItem
-          field services {
-            name: "Massage services"
-            item_properties: ['name', 'description', 'price']         
-          }
-          // Imagined as a list of <div> tags which contain the item_properties
-          // We can add new <div> tags to the list. 
-          // Example: https://www.sredime.rs price list for treatments
-
-
-          @Checkbox
-          field on_site {
-            name: "House calls available?"   
-          }
-
-        }
       }
+        
     }
 }

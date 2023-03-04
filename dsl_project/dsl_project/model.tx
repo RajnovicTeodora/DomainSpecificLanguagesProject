@@ -44,24 +44,53 @@ SubSection:
 ;
 
 Field: 
-  required_field?='@Required'
-  'field' templateField=ID '{'
-      fieldType=FieldType
+  required?='@Required'
+  'field' field=ID '{'
+      'type' ':' type=FieldType
   '}'
 ;
 
 FieldType: TextInput | Select | Checkbox | Radio | TemplateField;
 
-TextInput: 'text' name=ID label=STRING;
+TextInput:
+    type='text' name=ID
+    'label' ':' label=STRING
+;
 
-Select: 'select' name=ID label=STRING options+=Option+;
+Select:
+    type='select' name=ID
+    'label' ':' label=STRING
+    'options' '['
+    options+=Option
+    ']'
+;
 
-Checkbox: 'checkbox' name=ID label=STRING;
+Checkbox:
+    type='checkbox' name=ID
+    'label' ':' label=STRING
+;
 
-Radio: 'radio' name=ID label=STRING options+=Option+;
+Radio:
+    type='radio' name=ID
+    'label' ':' label=STRING
+    'options' '['
+    options+=Option
+    ']'
+;
 
-Option: 'option' label=STRING value=STRING;
+Option:
+    'option ('
+    'label' ':' label=STRING ','
+    'value' ':' value=STRING
+    ')'
+;
 
-TemplateField: name=ID label=STRING template=[Template] values+=Value*;
+TemplateField:
+    type=[Template] name=ID
+    'label' ':' label=STRING
+    'values' '['
+    values+=Value
+    ']'
+;
 
-Value: name=ID ':' (STRING | INT | FLOAT | BOOL);
+Value: name=[Param] ':' (STRING | INT | FLOAT | BOOL);

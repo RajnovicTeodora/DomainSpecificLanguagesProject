@@ -1,7 +1,9 @@
-Template:
+Templates:
     templates *= Template
 ;
 
-Template: 'template' name=ID '(' params+=Param* ')' file=STRING;
+Template: 'template' name=ID '(' params+=Param ')' file=STRING;
 
-Param: name=ID ':' type=ID;
+Param: name=ID ':' type=ParameterType;
+
+ParameterType: ('string' | 'integer' | 'float' | 'boolean')('[]')?;
