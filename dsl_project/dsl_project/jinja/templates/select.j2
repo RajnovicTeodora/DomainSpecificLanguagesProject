@@ -1,0 +1,6 @@
+<label for="{{ field.name }}">{{ field.label }}</label>
+<select {% if field.required %}required{% endif %} name="{{ field.name }}" id="{{ field.name }}">
+{% for option in field.options %}
+    <option value="{{ option.value }}" {% if option.value == data[field.name] %}selected{% endif %}>{{ option.label }}</option>
+{% endfor %}
+</select>

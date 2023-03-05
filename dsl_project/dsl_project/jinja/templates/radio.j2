@@ -1,0 +1,7 @@
+<label>{{ field.label }}</label>
+{% for option in field.options %}
+    <label for="{{ option.label }}">
+    <input type="radio" name="{{ field.name }}" id="{{ option.label }}" value="{{ option.value }}" {% if option.value == data[field.name] %}checked{% endif %}>
+    {{ option.label }}
+    </label>
+{% endfor %}

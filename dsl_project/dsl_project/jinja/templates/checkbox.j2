@@ -1,0 +1,4 @@
+<label for="{{ field.name }}">
+<input type="checkbox" name="{{ field.name }}" id="{{ field.name }}" value="{{ field.label }}" {% if data[field.name] %}checked{% endif %}>
+{{ field.label }}
+</label>
