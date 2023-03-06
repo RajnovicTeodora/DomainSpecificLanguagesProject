@@ -1,0 +1,95 @@
+function validateForm() {
+    let i =0;
+  for (const property in  [...Array(document.forms["myForm"].length).keys()]) {
+
+      if(document.forms["myForm"][property]["type"]!= "submit" && document.forms["myForm"][property]["type"]!= "number"){
+
+        if(document.forms["myForm"][property]["min"]!=""){
+          if (parseInt(document.forms["myForm"][property]["min"])>0 && parseInt(document.forms["myForm"][property]["min"]) > document.forms["myForm"][property].value.length){
+
+             alert("opet");
+             i++;
+             let name = "l" + document.forms["myForm"][property]["name"]
+             document.querySelector('.demo').style.backgroundColor  = "blue";
+          }
+        }
+
+        if(document.forms["myForm"][property]["max"]!=""){
+          if (parseInt(document.forms["myForm"][property]["max"])>0 && parseInt(document.forms["myForm"][property]["max"]) < document.forms["myForm"][property].value.length){
+             alert("opet");
+             i++;
+             let name = "l" + document.forms["myForm"][property]["name"]
+              document.querySelector('.demo').style.backgroundColor  = "blue";
+          }
+        }
+
+        if (document.forms["myForm"][property]["required"]){
+           alert("opet");
+           i++;
+           let name = "l" + document.forms["myForm"][property]["name"]
+           document.querySelector('.demo').style.backgroundColor  = "blue";
+        }
+
+      }
+       if(document.forms["myForm"][property]["type"]== "number"){
+
+        if(document.forms["myForm"][property]["min"]!=""){
+          if (parseInt(document.forms["myForm"][property]["min"])>0 && parseInt(document.forms["myForm"][property]["min"]) > document.forms["myForm"][property].value){
+             i++;
+             alert("opet");
+             let name = "l" + document.forms["myForm"][property]["name"]
+             document.querySelector('.demo').style.backgroundColor  = "blue";
+          }
+        }
+
+        if(document.forms["myForm"][property]["max"]!=""){
+          if (parseInt(document.forms["myForm"][property]["max"])>0 && parseInt(document.forms["myForm"][property]["max"]) < document.forms["myForm"][property].value){
+             alert("opet");
+             i++;
+             let name = "l" + document.forms["myForm"][property]["name"]
+              document.querySelector('.demo').style.backgroundColor  = "blue";
+          }
+        }
+       }
+   }
+}
+
+
+function submitFunction(e) {
+	return function(e) {
+		e.preventDefault();
+		var isValid = validateForm()
+
+		if(isValid) {
+			$.ajax({
+				url: '{{add.add_info.submit_url}}',
+				type: 'POST',
+				data: $('#myForm').serialize(),
+				success: function(){
+					$('#myForm')[0].reset();
+
+					$("#successAlertBox").fadeIn();
+					closeSuccessAlertBox();
+				},
+				error: function (message) {
+					$("#errorAlertBox").fadeIn();
+					closeErrorAlertBox();
+				}
+			});
+			return false;
+		}
+		return false;
+	}
+}
+
+function closeSuccessAlertBox(){
+	window.setTimeout(function () {
+	  $("#successAlertBox").fadeOut(300)
+	}, 3000);
+}
+
+function closeErrorAlertBox(){
+	window.setTimeout(function () {
+	  $("#errorAlertBox").fadeOut(300)
+	}, 3000);
+}
