@@ -1,10 +1,14 @@
-import fields
+import template
 
 AdvertisementPage:
+    //user defined templates
+    imports*=Import
 
     //advertisement
     advertisements=AdvertisementTab
 ;
+
+Import: 'import' importURI=STRING;
 
 AdvertisementTab:
 
@@ -35,36 +39,58 @@ ItemCard:
 
 SubSection:
   'sub_section' name=ID '{'
-    template_fields+=TemplateField
+    fields+=Field
   '}'
 ;
 
-// Generates an input field in the template
-TemplateField: 
-  required_field?='@Required'
+Field: 
+  required?='@Required'
   'field' field=ID '{'
-      'name' ':' name=STRING
-      'fieldType' ':' field_type= FieldType
-      fields*=FieldValue
+      'type' ':' type=FieldType
   '}'
 ;
 
-FieldValue:
-    field_name=STRING ':' value=Value
+FieldType: TextInput | Select | Checkbox | Radio | TemplateField;
+
+TextInput:
+    type='text' name=ID
+    'label' ':' label=STRING
 ;
 
-Value:
-    PrimitiveValue | ArrayValue
+Select:
+    type='select' name=ID
+    'label' ':' label=STRING
+    'options' '['
+    options+=Option
+    ']'
 ;
 
-// String : input type text, Float : input type number, step = 0.1, Int : input type number, Bool: checkbox
-PrimitiveValue:
-    value=STRING | value=STRICTFLOAT | value=INT | value=BOOL
+Checkbox:
+    type='checkbox' name=ID
+    'label' ':' label=STRING
 ;
 
-ArrayValue:
-    '[' value+=STRING[','] ']' | '[' value+=STRICTFLOAT[','] ']' | '[' value+=INT[','] ']' | '[' value+=BOOL[','] ']'
+Radio:
+    type='radio' name=ID
+    'label' ':' label=STRING
+    'options' '['
+    options+=Option
+    ']'
 ;
 
+Option:
+    'option ('
+    'label' ':' label=STRING ','
+    'value' ':' value=STRING
+    ')'
+;
 
+TemplateField:
+    type=[Template] name=ID
+    'label' ':' label=STRING
+    'values' '['
+    values+=Value
+    ']'
+;
 
+Value: name=[Param] ':' (STRING | INT | FLOAT | BOOL);
