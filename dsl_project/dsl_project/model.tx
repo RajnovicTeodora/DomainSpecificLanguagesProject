@@ -50,7 +50,7 @@ Field:
   '}'
 ;
 
-FieldType: TextInput | Select | Checkbox | Radio | Date | Time | TemplateField;
+FieldType: TextInput | Select | Checkbox | Radio | Date | Time | Number | TemplateField;
 
 TextInput:
     type='text' name=ID
@@ -79,13 +79,18 @@ Radio:
 ;
 
 Date:
-    type='text' name=ID
+    type='date' name=ID
     'label' ':' label=STRING
 ;
 
 Time:
-    type='text' name=ID
+    type='time' name=ID
     'label' ':' label=STRING
+;
+
+Number:
+    type='number' name=ID
+    'label' ':' label= INT | FLOAT
 ;
 
 Option:
