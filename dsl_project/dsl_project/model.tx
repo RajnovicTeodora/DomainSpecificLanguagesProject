@@ -32,15 +32,9 @@ AdvertisementInformation:
 ;
 
 ItemCard:
-   'item_section {'
-      sub_sections+=SubSection
+   'item_section' name=ID '{'
+      fields+=Field
    '}'
-;
-
-SubSection:
-  'sub_section' name=ID '{'
-    fields+=Field
-  '}'
 ;
 
 Field: 
